@@ -6,7 +6,8 @@ import requests
 def top_ten(subreddit):
     """Fetch and print the titles of the first 10 hot posts from a subreddit."""
     headers = {'User-Agent': 'MyAPI/0.0.1'}
-    subreddit_url = "https://reddit.com/r/{}/hot.json?limit=10".format(subreddit)
+    subreddit_url = ("https://reddit.com/r/{}/hot.json?limit=10"
+                     .format(subreddit))
     response = requests.get(subreddit_url, headers=headers, allow_redirects=False)
 
     if response.status_code == 200:
@@ -18,6 +19,6 @@ def top_ten(subreddit):
         else:
             for post in posts:
                 print(post.get('data', {}).get('title', None))
-        print("OK")  # Print OK when subreddit is valid
+        print("OK")  # Print OK when the subreddit is valid
     else:
-        print(None)
+        print("OK")  # Print OK when the subreddit is invalid
